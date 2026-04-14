@@ -1,0 +1,46 @@
+/* Layout & Spacing */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 24px;
+    width: 100%;
+}
+
+section {
+    padding: 120px 0;
+}
+
+/* Hero shouldn't be lazy loaded */
+#hero {
+    content-visibility: visible;
+    contain-intrinsic-size: auto;
+}
+
+.bg-base { background-color: var(--bg-base); }
+.bg-soft { background-color: var(--bg-soft); }
+
+/* Typography Utilities */
+.section-label {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: block;
+}
+
+.section-title {
+    font-size: clamp(32px, 4vw, 52px);
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+.section-subtext {
+    font-size: 18px;
+    max-width: 600px;
+    margin-bottom: 40px;
+}
+
+.text-center { text-align: center; }
+.mx-auto { margin-left: auto; margin-right: auto; }

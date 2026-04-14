@@ -1,0 +1,125 @@
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+    }
+    .hero-text, .hero-image-wrapper {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+    .hero-subheadline {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .hero-buttons {
+        justify-content: center;
+    }
+    .hero-trust {
+        justify-content: center;
+    }
+    .steps-grid {
+        flex-direction: column;
+    }
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .pricing-card.pro {
+        transform: scale(1);
+    }
+    .pricing-card.pro:hover {
+        transform: translateY(-8px);
+    }
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    section {
+        padding: 60px 0;
+    }
+    .nav-links, .nav-buttons {
+        display: none;
+    }
+    .hamburger {
+        display: flex;
+    }
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+    .cta-banner {
+        padding: 40px 20px;
+        margin: 0 16px;
+        border-radius: 20px;
+    }
+    .hero {
+        padding: 40px 0 60px;
+    }
+    .hero-headline {
+        font-size: clamp(36px, 10vw, 48px);
+    }
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+    .hero-buttons .btn {
+        width: 100%;
+    }
+    .hero-trust {
+        flex-direction: column;
+        gap: 8px;
+    }
+    .section-title {
+        font-size: clamp(28px, 8vw, 36px);
+    }
+    .pricing-grid {
+        gap: 20px;
+    }
+    .pricing-card {
+        padding: 30px 20px;
+    }
+    .step-card {
+        padding: 30px 20px;
+    }
+    .feature-card {
+        padding: 30px 20px;
+    }
+    .faq-question {
+        font-size: 16px;
+        padding: 20px 0;
+    }
+    .marquee-wrapper {
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 16px;
+    }
+    .logo img {
+        height: 40px;
+    }
+    .hero-headline {
+        font-size: 32px;
+    }
+    .hero-subheadline {
+        font-size: 16px;
+    }
+    .btn {
+        padding: 14px 24px;
+        font-size: 15px;
+    }
+}

@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">MBT</string>
+    <string name="title_activity_main">MBT</string>
+    <string name="package_name">com.mbt.bloodanalysis</string>
+    <string name="custom_url_scheme">com.mbt.bloodanalysis</string>
+    <string name="server_client_id">165405084372-36tgk1c92qa1ara28i8cpqh8gf2vpdek.apps.googleusercontent.com</string>
+</resources>
