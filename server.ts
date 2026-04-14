@@ -4,20 +4,12 @@ import dotenv from 'dotenv';
 import { createServer as createViteServer } from 'vite';
 import path from 'path';
 import { createClient } from '@supabase/supabase-js';
-import { Resend } from 'resend';
 import Stripe from 'stripe';
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-
-let resend: Resend | null = null;
-if (process.env.RESEND_API_KEY) {
-  resend = new Resend(process.env.RESEND_API_KEY);
-} else {
-  console.warn("RESEND_API_KEY is missing. Email features will be disabled.");
-}
 
 // Helper to get Stripe configuration from database
 async function getStripeConfig() {
