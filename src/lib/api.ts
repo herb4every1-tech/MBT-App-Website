@@ -13,7 +13,7 @@ const getBaseUrl = () => {
 
   // For Android development, point to your computer's IP
   if (Capacitor.getPlatform() === 'android') {
-    const url = 'http://192.168.68.105:3000/api';
+    const url = 'https://bloodtest.cloud/api';
     console.log('[API] Android detected, using URL:', url);
     return url;
   }

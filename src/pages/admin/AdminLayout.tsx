@@ -9,6 +9,7 @@ const navLinks = [
   { name: 'Usage & Analytics', path: '/admin/analytics', icon: BarChart3 },
   { name: 'Subscription & Revenue', path: '/admin/subscription', icon: CreditCard },
   { name: 'Stripe Settings', path: '/admin/stripe', icon: CreditCard },
+  { name: 'Support Messages', path: '/admin/support', icon: Bell },
   { name: 'AI System Settings', path: '/admin/ai-settings', icon: Bot },
   { name: 'App Settings', path: '/admin/settings', icon: Settings },
 ];

@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 interface FooterProps {
   scrollToSection: (id: string) => void;
 }
@@ -25,16 +27,16 @@ export default function Footer({ scrollToSection }: FooterProps) {
             <h4 className="footer-heading">Support</h4>
             <ul className="footer-links">
               <li><a href="#faq" onClick={(e) => { e.preventDefault(); scrollToSection('#faq'); }}>FAQ</a></li>
-              <li><a href="#">Contact Us</a></li>
-              <li><a href="#">Privacy Policy</a></li>
+              <li><Link to="/contact">Contact Us</Link></li>
+              <li><Link to="/privacy">Privacy Policy</Link></li>
             </ul>
           </div>
 
           <div>
             <h4 className="footer-heading">Company</h4>
             <ul className="footer-links">
-              <li><a href="#">About</a></li>
-              <li><a href="#">Terms & Conditions</a></li>
+              <li><Link to="/about">About</Link></li>
+              <li><Link to="/terms">Terms & Conditions</Link></li>
             </ul>
           </div>
         </div>

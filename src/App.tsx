@@ -20,6 +20,10 @@ import SettingsPage from './pages/SettingsPage';
 import HistoryPage from './pages/HistoryPage';
 import ReportsPage from './pages/ReportsPage';
 import ReportDetailPage from './pages/ReportDetailPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import TermsConditionsPage from './pages/TermsConditionsPage';
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
 import ProtectedRoute from './components/ProtectedRoute';
 import AdminRoute from './components/AdminRoute';
 import AdminLayout from './pages/admin/AdminLayout';
@@ -30,6 +34,7 @@ import AdminSubscriptionRevenue from './pages/admin/SubscriptionRevenue';
 import AdminAISystemSettings from './pages/admin/AISystemSettings';
 import AdminAppSettings from './pages/admin/AppSettings';
 import AdminStripeSettings from './pages/admin/StripeSettings';
+import AdminContactMessages from './pages/admin/ContactMessages';
 
 import { Capacitor } from '@capacitor/core';
 import { App as CapacitorApp } from '@capacitor/app';
@@ -369,6 +374,10 @@ export default function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/privacy" element={<PrivacyPolicyPage />} />
+        <Route path="/terms" element={<TermsConditionsPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/contact" element={<ContactPage />} />
         <Route path="/dashboard" element={<ProtectedRoute><DashboardPage /></ProtectedRoute>} />
         <Route path="/upload" element={<ProtectedRoute><UploadPage /></ProtectedRoute>} />
         <Route path="/history" element={<ProtectedRoute><HistoryPage /></ProtectedRoute>} />
@@ -380,6 +389,7 @@ export default function App() {
           <Route path="users" element={<AdminUserManagement />} />
           <Route path="analytics" element={<AdminUsageAnalytics />} />
           <Route path="subscription" element={<AdminSubscriptionRevenue />} />
+          <Route path="support" element={<AdminContactMessages />} />
           <Route path="ai-settings" element={<AdminAISystemSettings />} />
           <Route path="stripe" element={<AdminStripeSettings />} />
           <Route path="settings" element={<AdminAppSettings />} />
