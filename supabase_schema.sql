@@ -177,3 +177,5 @@ ALTER TABLE public.contact_messages ENABLE ROW LEVEL SECURITY;
 
 CREATE POLICY "Allow public insert contact messages" ON public.contact_messages FOR INSERT TO public WITH CHECK (true);
 CREATE POLICY "Allow admins to read messages" ON public.contact_messages FOR SELECT TO public USING (EXISTS (SELECT 1 FROM public.profiles WHERE public.profiles.id = auth.uid() AND public.profiles.role = 'admin'::text)));
+CREATE POLICY "Allow admins to delete messages" ON public.contact_messages FOR DELETE TO public USING (EXISTS (SELECT 1 FROM public.profiles WHERE public.profiles.id = auth.uid() AND public.profiles.role = 'admin'::text)));
+CREATE POLICY "Allow admins to update messages" ON public.contact_messages FOR UPDATE TO public USING (EXISTS (SELECT 1 FROM public.profiles WHERE public.profiles.id = auth.uid() AND public.profiles.role = 'admin'::text)));
