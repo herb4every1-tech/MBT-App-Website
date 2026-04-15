@@ -4,13 +4,27 @@ import Footer from '../components/Footer';
 import { ShieldCheck, Activity, BookOpen } from 'lucide-react';
 
 const AboutPage: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+    document.body.style.overflow = !isMenuOpen ? 'hidden' : '';
+  };
+
   return (
     <div className="min-h-screen bg-[#FAFAF8] text-[#1A1F1C] transition-colors duration-300">
-      <Navbar scrolled={true} />
+      <Navbar 
+        scrolled={true} 
+        isMenuOpen={isMenuOpen} 
+        toggleMenu={toggleMenu} 
+        scrollToSection={(id) => navigate('/' + id)}
+      />
+      <MobileMenu isMenuOpen={isMenuOpen} scrollToSection={(id) => navigate('/' + id)} />
       <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-6xl font-serif text-[#1A1F1C] mb-6 leading-tight">

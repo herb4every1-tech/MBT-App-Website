@@ -1,15 +1,25 @@
-import React, { useEffect } from 'react';
-import Navbar from '../components/Navbar';
-import Footer from '../components/Footer';
-
 const PrivacyPolicyPage: React.FC = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+    document.body.style.overflow = !isMenuOpen ? 'hidden' : '';
+  };
+
   return (
     <div className="min-h-screen bg-[#FAFAF8] text-[#1A1F1C] transition-colors duration-300">
-      <Navbar scrolled={true} />
+      <Navbar 
+        scrolled={true} 
+        isMenuOpen={isMenuOpen} 
+        toggleMenu={toggleMenu} 
+        scrollToSection={(id) => navigate('/' + id)}
+      />
+      <MobileMenu isMenuOpen={isMenuOpen} scrollToSection={(id) => navigate('/' + id)} />
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <div className="bg-white rounded-[2.5rem] shadow-sm p-8 sm:p-16 mb-12 border border-[#E5EDE8]">
           <h1 className="text-4xl md:text-6xl font-serif text-[#1A1F1C] mb-12 leading-tight">
