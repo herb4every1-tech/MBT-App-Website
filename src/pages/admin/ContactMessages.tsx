@@ -41,6 +41,9 @@ const AdminContactMessages: React.FC = () => {
 
     if (!error) {
       setMessages(messages.map(m => m.id === id ? { ...m, is_read: true } : m));
+    } else {
+      console.error('Update error:', error);
+      alert('Failed to mark as read. Please check RLS policies.');
     }
   };
 
@@ -54,78 +57,90 @@ const AdminContactMessages: React.FC = () => {
 
     if (!error) {
       setMessages(messages.filter(m => m.id !== id));
+    } else {
+      console.error('Delete error:', error);
+      alert('Failed to delete. Please check RLS policies.');
     }
   };
 
   if (loading) {
     return (
       <div className="flex items-center justify-center h-64">
-        <div className="w-8 h-8 border-3 border-teal-500/20 border-t-teal-500 rounded-full animate-spin"></div>
+        <div className="w-10 h-10 border-4 border-[#4A7C59]/20 border-t-[#4A7C59] rounded-full animate-spin"></div>
       </div>
     );
   }
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Support Inbox</h2>
-        <span className="bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400 px-4 py-1 rounded-full text-sm font-medium">
-          {messages.filter(m => !m.is_read).length} Unread
-        </span>
+    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <h2 className="text-3xl font-serif text-[#1A1F1C]">Support Inbox</h2>
+          <p className="text-[#5A6B61] mt-1">Manage user inquiries and reports.</p>
+        </div>
+        <div className="flex items-center gap-2 bg-[#D4E6DA] text-[#4A7C59] px-4 py-2 rounded-2xl text-sm font-bold">
+          <Mail className="w-4 h-4" />
+          {messages.filter(m => !m.is_read).length} UNREAD
+        </div>
       </div>
 
       <div className="grid gap-6">
         {messages.length === 0 ? (
-          <div className="text-center py-20 bg-white dark:bg-gray-800 rounded-2xl border border-dashed border-gray-300 dark:border-gray-700">
-            <Mail className="w-12 h-12 text-gray-300 mx-auto mb-4" />
-            <p className="text-gray-500">No messages yet.</p>
+          <div className="text-center py-24 bg-white rounded-[2.5rem] border-2 border-dashed border-[#E5EDE8]">
+            <div className="w-20 h-20 bg-[#FAFAF8] rounded-full flex items-center justify-center mx-auto mb-6">
+              <Mail className="w-10 h-10 text-[#9BABA0]" />
+            </div>
+            <p className="text-[#5A6B61] text-lg">Your support inbox is currently clear.</p>
           </div>
         ) : (
           messages.map((msg) => (
             <div 
               key={msg.id}
-              className={`bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-sm border ${
-                msg.is_read ? 'border-gray-100 dark:border-gray-700' : 'border-teal-500 ring-1 ring-teal-500/20'
-              } transition-all`}
+              className={`bg-white p-8 rounded-[2rem] shadow-sm border ${
+                msg.is_read ? 'border-[#E5EDE8]' : 'border-[#4A7C59] ring-4 ring-[#4A7C59]/5'
+              } transition-all hover:shadow-md`}
             >
-              <div className="flex flex-wrap justify-between items-start gap-4 mb-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center">
-                    <User className="w-5 h-5 text-gray-500" />
+              <div className="flex flex-wrap justify-between items-start gap-4 mb-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-[#FAFAF8] rounded-2xl flex items-center justify-center border border-[#E5EDE8]">
+                    <User className="w-6 h-6 text-[#4A7C59]" />
                   </div>
                   <div>
-                    <h3 className="font-bold text-gray-900 dark:text-white">{msg.name}</h3>
-                    <div className="flex items-center gap-2 text-sm text-gray-500">
+                    <h3 className="text-xl font-bold text-[#1A1F1C]">{msg.name}</h3>
+                    <div className="flex items-center gap-2 text-[#5A6B61] text-sm">
                       <Mail className="w-3 h-3" />
                       {msg.email}
                     </div>
                   </div>
                 </div>
-                <div className="flex items-center gap-2 text-sm text-gray-400">
+                {!msg.is_read && (
+                  <span className="bg-[#4A7C59] text-white text-[10px] font-black px-2 py-1 rounded-md tracking-widest uppercase">New Message</span>
+                )}
+                <div className="flex items-center gap-2 text-xs text-[#9BABA0] bg-[#FAFAF8] px-3 py-1.5 rounded-xl border border-[#E5EDE8]">
                   <Calendar className="w-3 h-3" />
                   {new Date(msg.created_at).toLocaleString()}
                 </div>
               </div>
 
-              <div className="mb-6">
-                <h4 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">Subject: {msg.subject}</h4>
-                <p className="text-gray-600 dark:text-gray-400 leading-relaxed whitespace-pre-wrap">
+              <div className="mb-8 p-6 bg-[#FAFAF8] rounded-2xl border border-[#E5EDE8]">
+                <h4 className="font-bold text-[#1A1F1C] mb-3 leading-tight underline decoration-[#4A7C59]/20 underline-offset-4">Subject: {msg.subject}</h4>
+                <p className="text-[#5A6B61] leading-relaxed whitespace-pre-wrap">
                   {msg.message}
                 </p>
               </div>
 
-              <div className="flex justify-end gap-3 pt-4 border-t border-gray-100 dark:border-gray-700">
+              <div className="flex justify-end gap-3 pt-6 border-t border-[#FAFAF8]">
                 {!msg.is_read && (
                   <button 
                     onClick={() => markAsRead(msg.id)}
-                    className="flex items-center gap-2 px-4 py-2 bg-teal-50 dark:bg-teal-900/20 text-teal-600 dark:text-teal-400 rounded-lg hover:bg-teal-100 transition-colors"
+                    className="flex items-center gap-2 px-6 py-2.5 bg-[#4A7C59] text-white rounded-xl hover:bg-[#3D664A] transition-all font-bold text-sm shadow-lg shadow-[#4A7C59]/10"
                   >
                     <CheckCircle className="w-4 h-4" /> Mark Read
                   </button>
                 )}
                 <button 
                   onClick={() => deleteMessage(msg.id)}
-                  className="flex items-center gap-2 px-4 py-2 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-lg hover:bg-red-100 transition-colors"
+                  className="flex items-center gap-2 px-6 py-2.5 bg-red-50 text-red-600 rounded-xl hover:bg-red-100 transition-colors font-bold text-sm"
                 >
                   <Trash2 className="w-4 h-4" /> Delete
                 </button>

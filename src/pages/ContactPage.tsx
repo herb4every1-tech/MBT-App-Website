@@ -4,6 +4,13 @@ import Footer from '../components/Footer';
 import { Mail, MessageCircle, Send, AlertCircle } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Mail, MessageCircle, Send, AlertCircle } from 'lucide-react';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import MobileMenu from '../components/MobileMenu';
+
 const ContactPage: React.FC = () => {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [formData, setFormData] = useState({ name: '', email: '', subject: '', message: '' });

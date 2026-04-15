@@ -3,6 +3,13 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { ShieldCheck, Activity, BookOpen } from 'lucide-react';
 
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ShieldCheck, Activity, BookOpen } from 'lucide-react';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
+import MobileMenu from '../components/MobileMenu';
+
 const AboutPage: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
