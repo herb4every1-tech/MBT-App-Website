@@ -47,6 +47,53 @@ export default function UserManagement() {
     return nextBilling.toLocaleDateString();
   };
 
+  const handleTogglePlan = async (user: any) => {
+    const newPlan = user.plan === 'pro' ? 'free' : 'pro';
+    const { error } = await supabase
+      .from('profiles')
+      .update({ plan: newPlan })
+      .eq('id', user.id);
+
+    if (error) {
+      alert('Error updating plan: ' + error.message);
+    } else {
+      setUsers(users.map(u => u.id === user.id ? { ...u, plan: newPlan } : u));
+      setSelectedUser({ ...selectedUser, plan: newPlan });
+    }
+  };
+
+  const handleToggleBan = async (user: any) => {
+    const newBanStatus = !user.is_banned;
+    const { error } = await supabase
+      .from('profiles')
+      .update({ is_banned: newBanStatus })
+      .eq('id', user.id);
+
+    if (error) {
+      alert('Error updating ban status: ' + error.message);
+    } else {
+      setUsers(users.map(u => u.id === user.id ? { ...u, is_banned: newBanStatus } : u));
+      setSelectedUser({ ...selectedUser, is_banned: newBanStatus });
+    }
+  };
+
+  const handleDeleteUser = async (user: any) => {
+    if (!confirm(`Are you sure you want to delete ${user.full_name}'s account? This action cannot be undone.`)) return;
+
+    const { error } = await supabase
+      .from('profiles')
+      .delete()
+      .eq('id', user.id);
+
+    if (error) {
+      alert('Error deleting user: ' + error.message);
+    } else {
+      setUsers(users.filter(u => u.id !== user.id));
+      setSelectedUser(null);
+      alert('User deleted successfully.');
+    }
+  };
+
   if (loading) return <div>Loading...</div>;
 
   return (
@@ -111,9 +158,24 @@ export default function UserManagement() {
               <p><strong>Status:</strong> {selectedUser.is_banned ? 'Banned' : 'Active'}</p>
             </div>
             <div className="mt-8 flex flex-col gap-3">
-              <button className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-colors">Change Plan</button>
-              <button className="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition-colors">{selectedUser.is_banned ? 'Unban' : 'Ban'}</button>
-              <button className="w-full border border-red-500 text-red-500 py-2 rounded-lg hover:bg-red-50 transition-colors">Delete Account</button>
+              <button 
+                onClick={() => handleTogglePlan(selectedUser)}
+                className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition-colors"
+              >
+                Change to {selectedUser.plan === 'pro' ? 'Free' : 'Pro'} Plan
+              </button>
+              <button 
+                onClick={() => handleToggleBan(selectedUser)}
+                className="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600 transition-colors"
+              >
+                {selectedUser.is_banned ? 'Unban User' : 'Ban User'}
+              </button>
+              <button 
+                onClick={() => handleDeleteUser(selectedUser)}
+                className="w-full border border-red-500 text-red-500 py-2 rounded-lg hover:bg-red-50 transition-colors"
+              >
+                Delete Account
+              </button>
             </div>
           </div>
         </div>

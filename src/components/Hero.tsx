@@ -30,7 +30,7 @@ export default function Hero({ scrollToSection }: HeroProps) {
           </div>
         </div>
         <div className="hero-image-wrapper hero-fade-in delay-3">
-          <img src="https://lh3.googleusercontent.com/d/1k7S1RiKfLs95LAc5z4JvdTMbCpj1Og3B" alt="MBT App Interface Mockup" className="hero-image" width="480" height="480" loading="eager" decoding="async" />
+          <img src="assets/images/hero.png" alt="MBT App Interface Mockup" className="hero-image" width="480" height="480" loading="eager" decoding="async" />
         </div>
       </div>
     </section>

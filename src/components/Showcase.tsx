@@ -6,7 +6,7 @@ export default function Showcase() {
           <h2 className="section-title display-font">See MBT in Action</h2>
           <p className="section-subtext mx-auto">A clean, intuitive interface designed for everyone</p>
         </div>
-        <img src="https://lh3.googleusercontent.com/d/1tDDdfztSjTag2gmePpWrJ7PqVwJOJjLu" alt="MBT App Preview" className="showcase-image animate-on-scroll delay-1" loading="lazy" decoding="async" />
+        <img src="assets/images/showcase.png" alt="MBT App Preview" className="showcase-image animate-on-scroll delay-1" decoding="async" />
       </div>
     </section>
   );

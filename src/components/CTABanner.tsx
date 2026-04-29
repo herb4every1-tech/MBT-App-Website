@@ -17,7 +17,7 @@ export default function CTABanner({ scrollToSection }: CTABannerProps) {
             zIndex: 0,
           }}>
             <img 
-              src="https://lh3.googleusercontent.com/d/1S_ScYs6PDnTzwG6wu4mTZgu3GOIUGUgJ" 
+              src="assets/images/cta-banner.png" 
               alt="Background" 
               className="w-full h-full object-cover"
             />
